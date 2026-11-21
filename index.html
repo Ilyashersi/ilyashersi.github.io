@@ -56,6 +56,26 @@ a{color:var(--accent)}
 .sech h2,.h2{margin:0;font-size:clamp(36px,5vw,48px);line-height:1.05}
 .sech span{font-size:13px;color:var(--muted)}
 
+
+/* photo */
+.me{grid-column:8/span 5;align-self:end;display:flex;flex-direction:column;gap:18px}
+.me .whoami{align-self:stretch}
+.photo{position:relative;width:132px;height:132px;perspective:600px;cursor:pointer;animation:popin .9s cubic-bezier(.2,.8,.2,1) both}
+.photo .ring{position:absolute;inset:-7px;border-radius:50%;border:1.5px dashed var(--accent);animation:spin 18s linear infinite;transition:inset .3s}
+.photo .face{position:absolute;inset:0;border-radius:50%;overflow:hidden;transition:transform .25s ease-out,box-shadow .3s;transform-style:preserve-3d}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.photo .on{position:absolute;right:6px;bottom:6px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.photo .on::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--accent);animation:ping 2.2s ease-out infinite}
+.photo:hover .ring,.photo:focus-visible .ring{inset:-11px;animation-duration:4s}
+.photo:hover .face,.photo:focus-visible .face{box-shadow:0 0 0 6px var(--glow)}
+.photo:hover img{transform:scale(1.06)}
+.photo:focus-visible{outline:none}
+.photo .hi{position:absolute;left:calc(100% + 16px);top:50%;transform:translate(-6px,-50%);opacity:0;white-space:nowrap;font:500 13px "IBM Plex Mono",monospace;color:var(--muted);transition:opacity .3s,transform .3s;pointer-events:none}
+.photo:hover .hi,.photo.say .hi{opacity:1;transform:translate(0,-50%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+@keyframes popin{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
+
 /* project list */
 .case{padding:40px 0;border-bottom:1px solid var(--line);row-gap:14px}
 .num{grid-column:1/span 1;align-self:start;justify-self:start;font-size:13px;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:2px 8px}
@@ -128,7 +148,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);f
 .cvmsg{color:var(--muted);padding:30px;text-align:center}
 
 @media (max-width:860px){
-.hero h1,.lead,.whoami,.case .txt,.meta,.logcol,.toolcol{grid-column:1/-1}
+.hero h1,.lead,.whoami,.me,.case .txt,.meta,.logcol,.toolcol{grid-column:1/-1}
 .num{grid-column:1/-1}
 .hero{padding:56px 0 56px}
 .nav a.l{font-size:14px}
@@ -152,12 +172,15 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);f
 <p class="status mono"><span class="dot"></span>status: cybersikkerhedsstuderende · Aarhus</p>
 <h1 class="serif">Jeg bygger netværk, overvåger dem — og <em>finder det, der ikke burde være der</em>.</h1>
 <p class="lead">Jeg læser Cybersikkerhed på Erhvervsakademi Aarhus og har tidligere læst til IT-Teknolog. Jeg interesserer mig for den praktiske side af sikkerhed: at forstå, hvordan netværk og systemer fungerer, så de kan overvåges, sikres og dokumenteres.</p>
+<div class="me">
+<div class="photo" id="photo" tabindex="0" role="img" aria-label="Foto af Ilyas Hersi"><span class="ring" aria-hidden="true"></span><span class="face"><img src="ilyas.jpg" alt="" width="132" height="132"></span><span class="on" aria-hidden="true"></span><span class="hi" aria-hidden="true">👋 hej, det er mig</span></div>
 <div class="whoami mono">
 <div class="hd"><span>whoami</span><span>ih-01</span></div>
 <div><span>uddannelse</span><span>Cybersikkerhed, EAAA</span></div>
 <div><span>baggrund</span><span>IT-Teknolog</span></div>
 <div><span>fokus</span><span>SIEM · netværk · NIS2</span></div>
 <div><span>praktik</span><span>januar 2028</span></div>
+</div>
 </div>
 <div class="btns"><a class="btn p" href="#projekter">Se projekter</a><a class="btn" href="Ilyas_Hersi_CV.pdf" target="_blank" rel="noopener">Se CV</a><a class="btn" href="#kontakt">Kontakt mig</a></div>
 </section>
@@ -275,6 +298,15 @@ document.getElementById('th').addEventListener('click',function(){
 var cur=root.getAttribute('data-theme'),dark=cur==='dark'||(!cur&&matchMedia('(prefers-color-scheme: dark)').matches),n=dark?'light':'dark';
 root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}
 });
+
+// photo tilt + wave
+(function(){var ph=document.getElementById('photo');if(!ph)return;var face=ph.querySelector('.face');
+var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ph.addEventListener('pointermove',function(e){if(still)return;var r=ph.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;face.style.transform='rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg)'});
+ph.addEventListener('pointerleave',function(){face.style.transform=''});
+function wave(){ph.classList.add('say');clearTimeout(ph._t);ph._t=setTimeout(function(){ph.classList.remove('say')},1800)}
+ph.addEventListener('click',wave);ph.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();wave()}});
+})();
 // tabs
 document.querySelectorAll('.pj').forEach(function(c){var b=[].slice.call(c.querySelectorAll('.tab')),p=c.querySelector('.tp');if(!b.length||!p)return;function s(x){b.forEach(function(y){y.classList.toggle('on',y===x)});p.textContent=x.dataset.t}b.forEach(function(x){x.addEventListener('mouseenter',function(){s(x)});x.addEventListener('click',function(){s(x)});x.addEventListener('focus',function(){s(x)})});s(b[0])});
 // network diagram
