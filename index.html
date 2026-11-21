@@ -60,18 +60,19 @@ a{color:var(--accent)}
 /* photo */
 .me{grid-column:8/span 5;align-self:end;display:flex;flex-direction:column;gap:18px}
 .me .whoami{align-self:stretch}
-.photo{position:relative;width:132px;height:132px;perspective:600px;cursor:pointer;animation:popin .9s cubic-bezier(.2,.8,.2,1) both}
-.photo .ring{position:absolute;inset:-7px;border-radius:50%;border:1.5px dashed var(--accent);animation:spin 18s linear infinite;transition:inset .3s}
+.photo{position:relative;width:min(220px,60vw);aspect-ratio:1;align-self:center;perspective:700px;cursor:pointer;animation:popin .9s cubic-bezier(.2,.8,.2,1) both}
+@media (min-width:1100px){.me{margin-top:-100px}}
+.photo .ring{position:absolute;inset:-9px;border-radius:50%;border:1.5px dashed var(--accent);animation:spin 18s linear infinite;transition:inset .3s}
 .photo .face{position:absolute;inset:0;border-radius:50%;overflow:hidden;transition:transform .25s ease-out,box-shadow .3s;transform-style:preserve-3d}
 .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-.photo .on{position:absolute;right:6px;bottom:6px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.photo .on{position:absolute;right:14px;bottom:14px;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
 .photo .on::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--accent);animation:ping 2.2s ease-out infinite}
-.photo:hover .ring,.photo:focus-visible .ring{inset:-11px;animation-duration:4s}
+.photo:hover .ring,.photo:focus-visible .ring{inset:-14px;animation-duration:4s}
 .photo:hover .face,.photo:focus-visible .face{box-shadow:0 0 0 6px var(--glow)}
 .photo:hover img{transform:scale(1.06)}
 .photo:focus-visible{outline:none}
-.photo .hi{position:absolute;left:calc(100% + 16px);top:50%;transform:translate(-6px,-50%);opacity:0;white-space:nowrap;font:500 13px "IBM Plex Mono",monospace;color:var(--muted);transition:opacity .3s,transform .3s;pointer-events:none}
-.photo:hover .hi,.photo.say .hi{opacity:1;transform:translate(0,-50%)}
+.photo .hi{position:absolute;right:-18px;top:6px;transform:translateY(6px);opacity:0;white-space:nowrap;font:500 13px "IBM Plex Mono",monospace;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:4px 12px;transition:opacity .3s,transform .3s;pointer-events:none}
+.photo:hover .hi,.photo.say .hi{opacity:1;transform:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.2);opacity:0}}
 @keyframes popin{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
@@ -173,7 +174,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);f
 <h1 class="serif">Jeg bygger netværk, overvåger dem — og <em>finder det, der ikke burde være der</em>.</h1>
 <p class="lead">Jeg læser Cybersikkerhed på Erhvervsakademi Aarhus og har tidligere læst til IT-Teknolog. Jeg interesserer mig for den praktiske side af sikkerhed: at forstå, hvordan netværk og systemer fungerer, så de kan overvåges, sikres og dokumenteres.</p>
 <div class="me">
-<div class="photo" id="photo" tabindex="0" role="img" aria-label="Foto af Ilyas Hersi"><span class="ring" aria-hidden="true"></span><span class="face"><img src="ilyas.jpg" alt="" width="132" height="132"></span><span class="on" aria-hidden="true"></span><span class="hi" aria-hidden="true">👋 hej, det er mig</span></div>
+<div class="photo" id="photo" tabindex="0" role="img" aria-label="Foto af Ilyas Hersi"><span class="ring" aria-hidden="true"></span><span class="face"><img src="ilyas.jpg" alt="" width="220" height="220"></span><span class="on" aria-hidden="true"></span><span class="hi" aria-hidden="true">👋 hej, det er mig</span></div>
 <div class="whoami mono">
 <div class="hd"><span>whoami</span><span>ih-01</span></div>
 <div><span>uddannelse</span><span>Cybersikkerhed, EAAA</span></div>
