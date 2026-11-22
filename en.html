@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ilyas Hersi, Cybersecurity and IT</title>
+<meta name="description" content="Portfolio of Ilyas Hersi, cybersecurity student in Aarhus, Denmark: networking, monitoring, SIEM and compliance.">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
+<link rel="alternate" hreflang="da" href="index.html">
+<link rel="alternate" hreflang="en" href="en.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f3f1;--ink:#111111;--soft:#3a3a38;--muted:#55554f;--line:#c9c9c4;--panel:#ebebe7;--accent:#1f3fd1;--accent-ink:#ffffff;--glow:rgba(31,63,209,.12);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1216;--ink:#e7ebf0;--soft:#c8d0da;--muted:#9aa4b2;--line:#2a313b;--panel:#171b21;--accent:#f5a524;--accent-ink:#0f1216;--glow:rgba(245,165,36,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1216;--ink:#e7ebf0;--soft:#c8d0da;--muted:#9aa4b2;--line:#2a313b;--panel:#171b21;--accent:#f5a524;--accent-ink:#0f1216;--glow:rgba(245,165,36,.14);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(84px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:background .3s,color .3s;padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:var(--accent)}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;padding-top:16px;padding-bottom:16px;border-bottom:1px solid var(--ink)}
+.brand{font-size:26px;margin-right:auto;color:var(--ink);text-decoration:none}
+.nav a.l{color:var(--ink);text-decoration:none;font-size:15px}
+.nav a.l:hover{color:var(--accent)}
+.nav a.cta{color:var(--accent);font-weight:600;text-decoration:none;font-size:15px}
+.nav a.lang{color:var(--ink);text-decoration:none;font:600 13px "IBM Plex Mono",ui-monospace,monospace;border:1px solid var(--line);border-radius:6px;padding:5px 9px;min-height:32px;display:inline-flex;align-items:center}
+.nav a.lang:hover{border-color:var(--accent);color:var(--accent)}
+.th{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:18px;cursor:pointer}
+.th:hover{border-color:var(--accent)}
+
+/* hero */
+.hero{padding:88px 0 80px;row-gap:32px}
+.status{grid-column:1/-1;margin:0;font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--glow)}
+.hero h1{grid-column:1/span 10;margin:0;font-size:clamp(48px,8vw,108px);line-height:.98;letter-spacing:-.01em}
+.hero h1 em{color:var(--accent)}
+.lead{grid-column:1/span 6;margin:0;font-size:19px;color:var(--soft);max-width:560px}
+.whoami{grid-column:8/span 5;align-self:end;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:16px 18px;font-size:13px;display:flex;flex-direction:column;gap:8px}
+.whoami div{display:flex;justify-content:space-between;gap:12px}
+.whoami div span:first-child{color:var(--muted)}
+.whoami .hd{border-bottom:1px solid var(--line);padding-bottom:8px}
+.btns{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font:500 15px Inter,sans-serif;background:none;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.p:hover{color:var(--accent-ink);filter:brightness(1.08)}
+
+/* sections */
+.sec{padding:32px 0 80px}
+.sech{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:14px;margin:0}
+.sech h2,.h2{margin:0;font-size:clamp(36px,5vw,48px);line-height:1.05}
+.sech span{font-size:13px;color:var(--muted)}
+
+
+/* photo */
+.me{grid-column:8/span 5;align-self:end;display:flex;flex-direction:column;gap:18px}
+.me .whoami{align-self:stretch}
+.photo{position:relative;width:min(220px,60vw);aspect-ratio:1;align-self:center;perspective:700px;cursor:pointer;animation:popin .9s cubic-bezier(.2,.8,.2,1) both}
+@media (min-width:1100px){.me{margin-top:-100px}}
+.photo .ring{position:absolute;inset:-9px;border-radius:50%;border:1.5px dashed var(--accent);animation:spin 18s linear infinite;transition:inset .3s}
+.photo .face{position:absolute;inset:0;border-radius:50%;overflow:hidden;transition:transform .25s ease-out,box-shadow .3s;transform-style:preserve-3d}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.photo .on{position:absolute;right:14px;bottom:14px;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.photo .on::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--accent);animation:ping 2.2s ease-out infinite}
+.photo:hover .ring,.photo:focus-visible .ring{inset:-14px;animation-duration:4s}
+.photo:hover .face,.photo:focus-visible .face{box-shadow:0 0 0 6px var(--glow)}
+.photo:hover img{transform:scale(1.06)}
+.photo:focus-visible{outline:none}
+.photo .hi{position:absolute;right:-18px;top:6px;transform:translateY(6px);opacity:0;white-space:nowrap;font:500 13px "IBM Plex Mono",monospace;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:4px 12px;transition:opacity .3s,transform .3s;pointer-events:none}
+.photo:hover .hi,.photo.say .hi{opacity:1;transform:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+@keyframes popin{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
+
+/* project list */
+.case{padding:40px 0;border-bottom:1px solid var(--line);row-gap:14px}
+.num{grid-column:1/span 1;align-self:start;justify-self:start;font-size:13px;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:2px 8px}
+.num.on{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.case .txt{grid-column:2/span 6}
+.case h3{margin:0 0 10px;font-size:clamp(30px,3.6vw,38px);line-height:1.05}
+.case p{margin:0;color:var(--soft)}
+.meta{grid-column:9/span 4;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.meta .m{color:var(--muted)}
+.meta a{font:600 15px Inter,sans-serif;text-decoration:none;margin-top:8px}
+.meta a:hover{text-decoration:underline}
+
+/* detail cards */
+.card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:clamp(20px,3vw,32px);margin-top:28px;transition:border-color .3s,box-shadow .3s}
+.card:target,.card.hl{border-color:var(--accent);box-shadow:0 0 0 4px var(--glow)}
+.cat{font:500 13px "IBM Plex Mono",ui-monospace,monospace;color:var(--accent);letter-spacing:.02em}
+.card h3{font:400 clamp(28px,3.4vw,36px)/1.08 "Instrument Serif",Georgia,serif;margin:8px 0 6px}
+.role{color:var(--muted);font-size:14px;margin:0 0 12px}
+.card>p{color:var(--soft);margin:0 0 12px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.flow span{border:1px solid var(--line);background:var(--bg);padding:5px 12px;border-radius:6px;font:500 13px "IBM Plex Mono",monospace}
+.flow i{color:var(--accent);font-style:normal}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 10px}
+.tab{min-height:40px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 16px;font:500 14px Inter,sans-serif;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tab:hover{border-color:var(--accent)}
+.tab.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tp{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:14px 18px;font-size:15px;min-height:76px;color:var(--soft)}
+.res{font-size:15px;margin:16px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);padding:3px 10px;border-radius:6px;font:13px "IBM Plex Mono",monospace;color:var(--soft)}
+#net{width:100%;height:auto;margin:10px 0 4px}
+#net line{stroke:var(--line);stroke-width:2;stroke-dasharray:5 5;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-20}}
+.nd{cursor:pointer;outline:none;transition:transform .2s;transform-box:fill-box}
+.nd rect{fill:var(--bg);stroke:var(--line);stroke-width:2;transition:all .2s}
+.nd text{fill:var(--ink);font:600 13px Inter,system-ui,sans-serif;text-anchor:middle;pointer-events:none}
+.nd:hover rect,.nd:focus rect,.nd.on rect{stroke:var(--accent)}
+.nd:hover,.nd.on{transform:translateY(-3px)}
+#info{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 16px;font-size:15px;min-height:52px;color:var(--soft)}
+.note{color:var(--muted);font-size:14px;margin-top:20px}
+
+/* log + tools */
+.two{row-gap:40px}
+.logcol{grid-column:1/span 7}
+.toolcol{grid-column:9/span 4}
+.log{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:18px 20px;font-size:13px;display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.log div{display:grid;grid-template-columns:84px 64px minmax(0,1fr);gap:12px}
+.log .t{color:var(--muted)}
+.log .a{color:var(--accent)}
+.tools{display:flex;flex-direction:column;gap:16px;font-size:15px;margin-top:18px}
+.tools div{border-top:1px solid var(--ink);padding-top:10px}
+.tools b{font-weight:600;display:block}
+.tools span{color:var(--soft)}
+
+/* contact */
+.contact{border-top:1px solid var(--ink);padding:64px 0 48px;display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:end}
+.contact h2{margin:0 0 10px;font-size:clamp(44px,6vw,80px);line-height:1}
+.contact p{margin:0;color:var(--soft)}
+.mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
+.mailrow code{font:15px "IBM Plex Mono",monospace;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px 14px;word-break:break-all}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:14px}
+
+/* cv overlay */
+.cvov{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;z-index:50;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 12px}
+.cvov.on{display:flex}
+.cvpanel{background:var(--bg);border:1px solid var(--line);border-radius:14px;width:min(940px,100%);overflow:hidden}
+.cvbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:1}
+#cvbox{padding:12px;display:flex;flex-direction:column;align-items:center;gap:12px}
+#cvbox canvas{max-width:100%;height:auto!important;border-radius:6px}
+.cvmsg{color:var(--muted);padding:30px;text-align:center}
+
+@media (max-width:860px){
+.hero h1,.lead,.whoami,.me,.case .txt,.meta,.logcol,.toolcol{grid-column:1/-1}
+.num{grid-column:1/-1}
+.hero{padding:56px 0 56px}
+.nav a.l{font-size:14px}
+}
+@media (max-width:520px){.nav a.l{display:none}.log div{grid-template-columns:64px 52px minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="brand serif" href="#top">Ilyas Hersi</a>
+<a class="l" href="#projekter">Projects</a>
+<a class="l" href="#rejsen">Journey</a>
+<a class="l" href="Ilyas_Hersi_CV_EN.pdf" target="_blank" rel="noopener">CV</a>
+<a class="lang" href="index.html" hreflang="da" lang="da" title="Dansk">DA</a>
+<a class="cta" href="#kontakt">Contact →</a>
+<button class="th" id="th" type="button" aria-label="Switch between light and dark mode">◐</button>
+</div></header>
+
+<main id="top" class="wrap">
+
+<section class="hero grid12">
+<p class="status mono"><span class="dot"></span>status: cybersecurity student · Aarhus, Denmark</p>
+<h1 class="serif">I build networks, monitor them — and <em>find what shouldn’t be there</em>.</h1>
+<p class="lead">I study Cybersecurity at Business Academy Aarhus and previously trained as an IT Technologist. I’m drawn to the practical side of security: understanding how networks and systems work, so they can be monitored, secured and documented.</p>
+<div class="me">
+<div class="photo" id="photo" tabindex="0" role="img" aria-label="Photo of Ilyas Hersi"><span class="ring" aria-hidden="true"></span><span class="face"><img src="ilyas.jpg" alt="" width="220" height="220"></span><span class="on" aria-hidden="true"></span><span class="hi" aria-hidden="true">👋 hi, that’s me</span></div>
+<div class="whoami mono">
+<div class="hd"><span>whoami</span><span>ih-01</span></div>
+<div><span>studies</span><span>Cybersecurity, EAAA</span></div>
+<div><span>background</span><span>IT Technologist</span></div>
+<div><span>focus</span><span>SIEM · networks · NIS2</span></div>
+<div><span>internship</span><span>January 2028</span></div>
+</div>
+</div>
+<div class="btns"><a class="btn p" href="#projekter">View projects</a><a class="btn" href="Ilyas_Hersi_CV_EN.pdf" target="_blank" rel="noopener">View CV</a><a class="btn" href="#kontakt">Contact me</a></div>
+</section>
+
+<section id="projekter" class="sec">
+<div class="sech"><h2 class="serif">Selected projects</h2><span class="mono">03 projects · chronological</span></div>
+
+<article class="case grid12">
+<span class="num mono">#001</span>
+<div class="txt"><h3 class="serif">IoT GPS tracker with live map</h3><p>A Pico W with a GPS module sends its position wirelessly over MQTT to a MariaDB database and shows the route live on a Google Maps map.</p></div>
+<div class="meta mono"><span class="m">2nd semester · IoT</span><span>mqtt · mariadb · uart · google maps</span><a href="#p2" data-go="p2">Read the case →</a></div>
+</article>
+
+<article class="case grid12">
+<span class="num mono">#002</span>
+<div class="txt"><h3 class="serif">Enterprise network and IT security</h3><p>A secure company network with VLAN segmentation, VPN, Active Directory and hardening against attacks such as DHCP spoofing.</p></div>
+<div class="meta mono"><span class="m">3rd semester · networking and security</span><span>cisco ios · vlan · ospf · pfsense · ad</span><a href="#p3" data-go="p3">Read the case →</a></div>
+</article>
+
+<article class="case grid12">
+<span class="num mono on">#003</span>
+<div class="txt"><h3 class="serif">Homelab with Proxmox and Wazuh SIEM</h3><p>My own security lab on a Lenovo ThinkCentre M720q: Proxmox as the hypervisor, Wazuh as the SIEM, a test container I “attack” myself to verify detection, and secure remote access with Tailscale and no open ports.</p></div>
+<div class="meta mono"><span class="m">side project · homelab</span><span>proxmox · wazuh · lxc · tailscale</span><a href="#p4" data-go="p4">Read the case →</a></div>
+</article>
+</section>
+
+<section id="detaljer" class="sec" style="padding-top:0">
+<div class="sech"><h2 class="serif">How I built them</h2><span class="mono">details</span></div>
+<div class="card feat pj" id="p2"><div class="cat">#001 · IoT · 2nd semester</div><h3>IoT GPS tracker with live map</h3><div class="role">Role: IoT system developer, backend and frontend</div>
+<p>A complete IoT system built from scratch. A Pico W with a GPS module sends its position wirelessly in real time over MQTT. The data is stored in a MariaDB database and shown live on an interactive Google Maps map.</p>
+<div class="flow"><span>GPS</span><i>→</i><span>Pico W</span><i>→</i><span>MQTT</span><i>→</i><span>Backend</span><i>→</i><span>MariaDB</span><i>→</i><span>Google Maps</span></div>
+<div class="tabs"><button class="tab" data-t="Connected a NEO-6M GPS module over UART, received raw NMEA sentences, filtered out noise and extracted latitude, longitude and timestamp.">GPS data</button><button class="tab" data-t="The Pico acted as an MQTT client and published the coordinates as JSON to a topic on a central broker at fixed intervals.">MQTT</button><button class="tab" data-t="Built a MariaDB table structure and a backend script that subscribed to the topic and inserted the data into the database.">Database</button><button class="tab" data-t="A web frontend using the Google Maps API and JavaScript that plotted the live position as a marker and a route.">Map</button><button class="tab" data-t="Handled situations without a satellite fix (No Fix), so the system neither sent empty coordinates nor plotted wrong positions.">Robustness</button></div>
+<div class="tp"></div>
+<p class="res">Result: a working end-to-end system. The device could be taken outdoors, and the route was logged and shown live.</p><div class="chips" style="margin-top:16px"><span class="chip">Raspberry Pi Pico W</span><span class="chip">NEO-6M</span><span class="chip">UART</span><span class="chip">MQTT</span><span class="chip">MariaDB</span><span class="chip">JavaScript</span><span class="chip">Google Maps API</span></div></div>
+<div class="card feat pj" id="p3"><div class="cat">#002 · Networking and IT security · 3rd semester</div><h3>Enterprise network infrastructure and IT security</h3><div class="role">Role: network and security lead</div>
+<p>The goal was to design, configure and implement a scalable and secure network infrastructure for a simulated mid-sized company with requirements for high uptime, segmentation and protection against cyber threats. Hover over parts of the network, and pick an area below.</p>
+<svg id="net" viewBox="0 0 720 300" role="img" aria-label="Network diagram">
+<line x1="360" y1="48" x2="360" y2="100"/><line x1="360" y1="140" x2="360" y2="180"/>
+<line x1="360" y1="180" x2="110" y2="180"/><line x1="110" y1="180" x2="110" y2="215"/>
+<line x1="360" y1="180" x2="250" y2="215"/><line x1="360" y1="180" x2="470" y2="215"/><line x1="360" y1="180" x2="610" y2="180"/><line x1="610" y1="180" x2="610" y2="215"/>
+<g class="nd" tabindex="0" data-t="pfSense: firewall, certificates and a Certificate Authority plus a VPN tunnel, all set up through pfSense."><rect x="290" y="10" width="140" height="38" rx="9"/><text x="360" y="34">pfSense</text></g>
+<g class="nd" tabindex="0" data-t="Routers and switches tie the network together between the firewall, the servers and the employees’ machines."><rect x="290" y="100" width="140" height="38" rx="9"/><text x="360" y="124">Router and switch</text></g>
+<g class="nd" tabindex="0" data-t="DHCP server: automatically hands out IP addresses to the virtual employee machines."><rect x="40" y="215" width="140" height="38" rx="9"/><text x="110" y="239">DHCP</text></g>
+<g class="nd" tabindex="0" data-t="Active Directory: users, groups, permissions and policies, which I tested on the virtual employees."><rect x="180" y="215" width="140" height="38" rx="9"/><text x="250" y="239">Active Directory</text></g>
+<g class="nd" tabindex="0" data-t="Backup server with Veeam to back up the fictional company."><rect x="400" y="215" width="140" height="38" rx="9"/><text x="470" y="239">Backup (Veeam)</text></g>
+<g class="nd" tabindex="0" data-t="Zabbix: agent-based monitoring with a dashboard showing data and alerts from the environment."><rect x="540" y="215" width="140" height="38" rx="9"/><text x="610" y="239">Zabbix</text></g>
+<g class="nd" tabindex="0" data-t="Virtual machines playing the company’s employees. This is where permissions and policies were tested."><rect x="540" y="100" width="140" height="38" rx="9"/><text x="610" y="124">Employee VMs</text></g>
+</svg>
+<div id="info">Hover over a part of the network.</div>
+<div class="tabs"><button class="tab" data-t="Core, distribution and access layers with VLAN segmentation separating departments such as Administration, IT and Guest network. Inter-VLAN routing and OSPF, plus EtherChannel for performance and uptime.">Segmentation</button><button class="tab" data-t="Firewalls to control the traffic flow. pfSense was used for the firewall, certificates and a Certificate Authority.">Security</button><button class="tab" data-t="Windows Server with Active Directory for central user and permission management, plus DNS and DHCP for automatic IP address handling. Virtual machines acted as the company’s employees, so I could test permissions and policies.">Servers</button><button class="tab" data-t="Traffic monitoring with Wireshark to find bottlenecks and security gaps. The network components were then hardened against common attacks such as DHCP spoofing.">Hardening</button><button class="tab" data-t="Backup with Veeam and agent-based monitoring with Zabbix, where a dashboard showed data and alerts from the environment.">Operations</button></div>
+<div class="tp"></div><div class="chips" style="margin-top:16px"><span class="chip">Cisco IOS</span><span class="chip">VLAN</span><span class="chip">OSPF</span><span class="chip">EtherChannel</span><span class="chip">NAT/PAT</span><span class="chip">pfSense</span><span class="chip">Certificate Authority</span><span class="chip">Active Directory</span><span class="chip">DNS</span><span class="chip">DHCP</span><span class="chip">Veeam</span><span class="chip">Zabbix</span><span class="chip">Wireshark</span><span class="chip">SNMP</span></div></div>
+<div class="card feat pj" id="p4"><div class="cat">#003 · Homelab · side project</div><h3>Homelab with Proxmox and Wazuh SIEM</h3><div class="role">Role: everything from hardware and installation to troubleshooting and documentation</div>
+<p>A security lab I built at home. A Lenovo ThinkCentre M720q runs Proxmox VE with an Ubuntu VM for Wazuh and small LXC containers for the rest: a test machine on which I deliberately create suspicious activity, and a Tailscale container that gives me secure access to the whole lab from anywhere. Wazuh agents on the server and the containers send logs and events to Wazuh, so I can practise detection on a real network and see whether my tests get caught.</p>
+<div class="flow"><span>M720q</span><i>→</i><span>Proxmox VE</span><i>→</i><span>Wazuh VM</span><span>testlab (LXC)</span><span>Tailscale (LXC)</span></div>
+<div class="tabs"><button class="tab" data-t="Lenovo ThinkCentre M720q with an Intel CPU and NVMe SSD: small, quiet and power-efficient, so it can run around the clock. Booted from USB via F12 with virtualization (VT-x/VT-d) enabled in the BIOS. Wake-on-LAN is configured in both the BIOS and Linux, so the server can be powered on from my phone or laptop and shut down again with one tap via an iPhone shortcut over SSH.">Hardware</button><button class="tab" data-t="Proxmox VE with a static IP, pinned network interface names and update repositories switched from enterprise to no-subscription. Wazuh runs in a VM, while the lightweight services run as LXC containers using only 256–384 MB of RAM each. With 8 GB of RAM in total, I tuned the Wazuh indexer’s memory (JVM heap) and the VM’s RAM to make room for the containers alongside it.">Proxmox</button><button class="tab" data-t="A Tailscale container acts as a subnet router for the whole home network, so I can reach Proxmox, Wazuh and everything else from school or my phone. I chose Tailscale over WireGuard and OpenVPN because it needs no port forwarding or public IP, so there are no open ports on the router. The container was given access to the /dev/net/tun network device and IP forwarding, and key expiry is disabled for the server.">Remote access</button><button class="tab" data-t="Wazuh all-in-one (server, indexer and dashboard) in an Ubuntu Server 24.04 VM. I skipped Ubuntu 26.04 because Wazuh doesn’t officially support it yet. Agents on the Proxmox host and the containers, snapshots before every major change, and the same time zone on every machine so events can be compared across them. First test: failed SSH logins were caught (rules 5710 and 5503) and correlated into a level 10 brute force alert (rule 2502).">Wazuh SIEM</button><button class="tab" data-t="Testlab is a small Debian container I use as the target for my own tests. It runs a Wazuh agent with real-time monitoring of a folder of &quot;sensitive&quot; files and reads login attempts from auth.log. When I created, modified and deleted a file, alerts fired immediately (rules 554, 550 and 553), and Wazuh mapped them to MITRE ATT&amp;CK techniques such as Stored Data Manipulation and Data Destruction on its own. The tests are deliberately simple and run only in my own lab.">Testlab</button><button class="tab" data-t="Problems I solved along the way: no access to the web panel because Wi-Fi and cable were on the same subnet. DNS errors because the server had no internet. Updates failing because of paid enterprise repositories. A Wazuh agent on Proxmox missing the lsb-release package and still using the MANAGER_IP placeholder as its server address. The browser console adding invisible characters to pasted commands (bracketed paste). And Debian containers logging only to journald, so rsyslog had to be installed before Wazuh could see login attempts.">Troubleshooting</button></div>
+<div class="tp"></div>
+<figure style="margin:16px 0 0"><a href="wazuh-threat-hunting.png" target="_blank" rel="noopener"><img src="wazuh-threat-hunting.png" alt="Wazuh Threat Hunting with alerts for failed SSH logins" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line)"></a><figcaption style="color:var(--muted);font-size:13px;margin-top:6px">Wazuh Threat Hunting with alerts from my own SSH login attempts. Tap for full size.</figcaption></figure>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px">
+<figure style="margin:0"><a href="wazuh-fim-events.png" target="_blank" rel="noopener"><img src="wazuh-fim-events.png" alt="Wazuh events for a file that was created, modified and deleted" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line)"></a><figcaption style="color:var(--muted);font-size:13px;margin-top:6px">Testlab: a sensitive file is created (554), modified (550) and deleted (553), and Wazuh detects it in real time.</figcaption></figure>
+<figure style="margin:0"><a href="wazuh-fim-mitre.png" target="_blank" rel="noopener"><img src="wazuh-fim-mitre.png" alt="Wazuh dashboard with MITRE ATT&amp;CK techniques for the test container" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line)"></a><figcaption style="color:var(--muted);font-size:13px;margin-top:6px">The same events mapped to MITRE ATT&amp;CK techniques in the dashboard.</figcaption></figure>
+</div>
+<p class="res">Result: a running homelab with secure remote access, where Wazuh detects failed SSH logins, correlates repeated attempts into a brute force alert and catches tampering with sensitive files in real time on the test container.</p><div class="chips" style="margin-top:16px"><span class="chip">Proxmox VE</span><span class="chip">Wazuh</span><span class="chip">Ubuntu Server</span><span class="chip">Linux</span><span class="chip">LXC</span><span class="chip">Tailscale</span><span class="chip">Virtualization</span><span class="chip">Wake-on-LAN</span><span class="chip">DNS</span><span class="chip">DHCP</span><span class="chip">SIEM</span><span class="chip">File Integrity Monitoring</span><span class="chip">MITRE ATT&amp;CK</span></div></div>
+<p class="note">All projects were built in isolated test environments. Nothing here contains real addresses or credentials.</p>
+
+</section>
+
+<section id="rejsen" class="sec grid12 two">
+<div class="logcol">
+<h2 class="h2 serif">Journey</h2>
+<div class="log mono">
+<div><span class="t">Jan 2028</span><span class="a">INFO</span><span>Internship where I can apply it in a real security environment</span></div>
+<div><span class="t">now</span><span class="a">START</span><span>Homelab: Proxmox, Wazuh SIEM, test container and Tailscale on my own hardware</span></div>
+<div><span class="t">2026</span><span class="a">START</span><span>Cybersecurity, Business Academy Aarhus</span></div>
+<div><span class="t">3rd sem.</span><span class="t">DONE</span><span>Enterprise network: segmentation, VPN, AD and hardening</span></div>
+<div><span class="t">2nd sem.</span><span class="t">DONE</span><span>IoT GPS tracker: MQTT, MariaDB and Google Maps</span></div>
+<div><span class="t">2023–25</span><span class="t">DONE</span><span>IT Technologist, specializing in Networking and IT Security</span></div>
+</div>
+</div>
+<div class="toolcol">
+<h2 class="h2 serif">Tools</h2>
+<div class="tools">
+<div><b>Networking</b><span>Cisco, GNS3, Packet Tracer, VLAN, OSPF, SNMP</span></div>
+<div><b>Security</b><span>pfSense, VPN, Tailscale, certificates, encryption, Wireshark</span></div>
+<div><b>Operations and monitoring</b><span>Linux, Proxmox, LXC, Wazuh, Zabbix, Active Directory, VMware vSphere, Veeam, RAID</span></div>
+<div><b>Cloud and programming</b><span>Google Cloud, Python, MicroPython, JavaScript</span></div>
+<div><b>Standards and regulation</b><span>NIS2, GDPR, DORA, NIST, CIS Controls, ISO 27001</span></div>
+<div><b>Ways of working</b><span>Documentation, ClickUp, WBS, Gantt</span></div>
+</div>
+</div>
+</section>
+
+<section id="kontakt" class="contact">
+<div>
+<h2 class="serif">Contact me.</h2>
+<p>Feel free to get in touch if you’d like to hear more about my projects.</p>
+<div class="mailrow"><code id="mailtxt">ilyasabduhersi@gmail.com</code><button class="btn" id="cpy" type="button">Copy</button></div>
+</div>
+<div class="btns" style="justify-content:flex-end">
+<a class="btn p" href="mailto:ilyasabduhersi@gmail.com?subject=Message%20via%20portfolio">Send an email</a>
+<a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ilyasabduhersi@gmail.com&amp;su=Message%20via%20portfolio" target="_blank" rel="noopener">Open in Gmail</a>
+<a class="btn" href="https://www.linkedin.com/in/ilyas-hersi" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn" href="Ilyas_Hersi_CV_EN.pdf" target="_blank" rel="noopener">View CV</a>
+</div>
+</section>
+</main>
+<footer><div class="wrap">© 2026 Ilyas Hersi</div></footer>
+
+<div id="cvov" class="cvov" role="dialog" aria-modal="true" aria-label="CV"><div class="cvpanel"><div class="cvbar"><b>Ilyas Hersi, CV</b><span style="display:flex;gap:8px"><a class="btn" href="Ilyas_Hersi_CV_EN.pdf" download>Download</a><button type="button" class="btn" id="cvx">Close</button></span></div><div id="cvbox"></div></div></div>
+
+<script>
+(function(){
+var root=document.documentElement;
+// theme
+document.getElementById('th').addEventListener('click',function(){
+var cur=root.getAttribute('data-theme'),dark=cur==='dark'||(!cur&&matchMedia('(prefers-color-scheme: dark)').matches),n=dark?'light':'dark';
+root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}
+});
+
+// photo tilt + wave
+(function(){var ph=document.getElementById('photo');if(!ph)return;var face=ph.querySelector('.face');
+var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ph.addEventListener('pointermove',function(e){if(still)return;var r=ph.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;face.style.transform='rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg)'});
+ph.addEventListener('pointerleave',function(){face.style.transform=''});
+function wave(){ph.classList.add('say');clearTimeout(ph._t);ph._t=setTimeout(function(){ph.classList.remove('say')},1800)}
+ph.addEventListener('click',wave);ph.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();wave()}});
+})();
+// tabs
+document.querySelectorAll('.pj').forEach(function(c){var b=[].slice.call(c.querySelectorAll('.tab')),p=c.querySelector('.tp');if(!b.length||!p)return;function s(x){b.forEach(function(y){y.classList.toggle('on',y===x)});p.textContent=x.dataset.t}b.forEach(function(x){x.addEventListener('mouseenter',function(){s(x)});x.addEventListener('click',function(){s(x)});x.addEventListener('focus',function(){s(x)})});s(b[0])});
+// network diagram
+var info=document.getElementById('info'),nds=[].slice.call(document.querySelectorAll('.nd'));
+nds.forEach(function(n){function s(){nds.forEach(function(m){m.classList.remove('on')});n.classList.add('on');if(info)info.textContent=n.getAttribute('data-t')}n.addEventListener('mouseenter',s);n.addEventListener('click',s);n.addEventListener('focus',s)});
+// highlight target card
+document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(){var t=document.getElementById(a.dataset.go);if(!t)return;t.classList.remove('hl');void t.offsetWidth;t.classList.add('hl');setTimeout(function(){t.classList.remove('hl')},2200)})});
+// copy email
+var b=document.getElementById('cpy'),t=document.getElementById('mailtxt');
+if(b&&t)b.addEventListener('click',function(){var v=t.textContent.trim(),done=function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy'},1800)};function sel(){var r=document.createRange();r.selectNodeContents(t);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');done()}catch(e){b.textContent='Selected, press Ctrl+C';setTimeout(function(){b.textContent='Copy'},2500)}}try{navigator.clipboard.writeText(v).then(done,sel)}catch(e){sel()}});
+})();
+</script>
+<script>(function(){var ov=document.getElementById('cvov'),box=document.getElementById('cvbox'),loaded=false,V='3.11.174';function close(){ov.classList.remove('on');document.body.style.overflow=''}function open(){ov.classList.add('on');document.body.style.overflow='hidden';if(!loaded)load()}function fail(){box.innerHTML='<p class="cvmsg">Couldn’t show the CV here. Use the Download button, or email me and I’ll send it directly.</p>'}function load(){box.innerHTML='<p class="cvmsg">Loading CV...</p>';var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/'+V+'/pdf.min.js';s.onload=function(){try{pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/'+V+'/pdf.worker.min.js';pdfjsLib.getDocument('Ilyas_Hersi_CV_EN.pdf').promise.then(function(pdf){box.innerHTML='';var w=Math.max(280,Math.min(box.clientWidth-24,900)),dpr=window.devicePixelRatio||1;function pg(n){if(n>pdf.numPages){loaded=true;return}pdf.getPage(n).then(function(p){var v0=p.getViewport({scale:1}),v=p.getViewport({scale:w/v0.width*dpr}),c=document.createElement('canvas');c.width=v.width;c.height=v.height;c.style.width=(v.width/dpr)+'px';box.appendChild(c);return p.render({canvasContext:c.getContext('2d'),viewport:v}).promise.then(function(){pg(n+1)})}).catch(fail)}pg(1)}).catch(fail)}catch(e){fail()}};s.onerror=fail;document.head.appendChild(s)}document.querySelectorAll('a[href="Ilyas_Hersi_CV_EN.pdf"]:not([download])').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open()})});document.getElementById('cvx').addEventListener('click',close);ov.addEventListener('click',function(e){if(e.target===ov)close()});document.addEventListener('keydown',function(e){if(e.key==='Escape')close()})})();</script>
+</body>
+</html>
